@@ -1,7 +1,7 @@
 keras
 tensorflow
 seaborn
-serial
+pyserial
 fastapi
 keyboard
 pandas
