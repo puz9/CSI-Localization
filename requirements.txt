@@ -5,4 +5,4 @@ serial
 fastapi
 keyboard
 pandas
-json
+uvicorn

@@ -67,11 +67,11 @@ ax.set_ylim(-100, 100)
 ax.set_title('Real-time CSI data')
 ax.set_xlabel('index')
 ax.set_ylabel('CSI Value')
-line_n=0;
+line_n=0
 
-line_=None;
-period=0.5;
-period_tick=get_time()/period;
+line_=None
+period=0.5
+period_tick=get_time()/period
 while True:
     try:
         line = ser.readline().decode().strip()  # Read a line and decode it from bytes to string
