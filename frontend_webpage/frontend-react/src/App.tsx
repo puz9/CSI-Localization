@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Row, Col } from 'antd';
 // import 'antd/dist/antd.css';
 import './App.css';
+import axios from 'axios';
 
 import { BorderOutlined, UserOutlined } from '@ant-design/icons';
 
@@ -16,16 +17,28 @@ function App() {
   ]);
 
   // Function to update valueArray with random values (0 or 1)
-  const updateValueArray = () => {
-    const newArray = valueArray.map((row: number[]) =>
-      row.map(() => Math.random() > 0.5 ? 1 : 0)
-    );
-    setValueArray(newArray);
-  };
+  // const updateValueArray = () => {
+  //   const newArray = valueArray.map((row: number[]) =>
+  //     row.map(() => Math.random() > 0.5 ? 1 : 0)
+  //   );
+  //   setValueArray(newArray);
+  // };
 
-  // Run updateValueArray function every 2 seconds
+const updateValueArray = async () => {
+        try {
+            const response = await axios.get(`http://localhost:8000/map_data/latest`);
+            const mapData = response.data.map_data;
+
+            console.log(mapData);
+            setValueArray(mapData);
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    };
+
+  // Run updateValueArray function every 1 seconds
   useEffect(() => {
-    const interval = setInterval(updateValueArray, 2000);
+    const interval = setInterval(updateValueArray, 1000);
     return () => clearInterval(interval);
   }, []);
 

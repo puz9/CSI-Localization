@@ -5,4 +5,4 @@ pyserial
 fastapi
 keyboard
 pandas
-runtime-checker
+uvicorn
