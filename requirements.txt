@@ -2,3 +2,7 @@ keras
 tensorflow
 seaborn
 serial
+fastapi
+keyboard
+pandas
+json
