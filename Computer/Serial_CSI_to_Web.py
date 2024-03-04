@@ -1,9 +1,9 @@
 import json
 import os
 import time
-from sklearn.neighbors import KNeighborsClassifier 
-from sklearn.model_selection import train_test_split 
-from sklearn.datasets import load_iris 
+# from sklearn.neighbors import KNeighborsClassifier 
+# from sklearn.model_selection import train_test_split 
+# from sklearn.datasets import load_iris 
 import joblib
 import serial
 import math

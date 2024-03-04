@@ -21,7 +21,7 @@ async def upload_latest_map_data_to_storage(map_data:Map_Data):
     df=pd.read_csv(path_map_data)
     new_data=pd.DataFrame({
         "timestamp":[datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")],
-        "map_data":[json.dumps(validated_map_data.map_data)]
+        "map_data":json.dumps(validated_map_data.map_data)
     },index=[0])
     df=pd.concat([df,new_data],ignore_index=True)
     df.to_csv(path_map_data,index=False)
@@ -30,7 +30,7 @@ async def upload_latest_map_data_to_storage(map_data:Map_Data):
 @map_router.get("/map_data/all",response_model=List[Time_And_Map_Data])
 async def obtain_all_map_data():
     df=pd.read_csv(path_map_data)
-    df["map_data"]=df["map_data"].map_routerly(json.loads)
+    df["map_data"]=df["map_data"].apply(json.loads)
 
     resp=[Time_And_Map_Data(
         timestamp=timestamp,

@@ -20,15 +20,16 @@ def upload_raw_CSI_data_to_server(axis: str,request_body: CSI_Data):
     else:
         raise HTTPException(status_code=400, detail="Axis must be either x or y")
     df=pd.read_csv(path_csv)
+    print(request_body.csi_data)
     new_data=pd.DataFrame({
         "timestamp":[datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")],
-        "csi_data":request_body.csi
+        "csi_data":[request_body.csi_data]
     },index=[0])
     df=pd.concat([df,new_data],ignore_index=True)
     df.to_csv(path_csv,index=False)
     return {"message": "CSI data uploaded"}
 
-@csi_router.get("/csi_data/{axis}/raw/latest",response_model=CSI_Data)
+@csi_router.get("/csi_data/{axis}/raw/latest",response_model=Time_And_CSI_Data)
 async def get_latest_raw_csi_data(axis:str):
     axis=axis.lower()
     path_csv=""
@@ -41,9 +42,9 @@ async def get_latest_raw_csi_data(axis:str):
     df=pd.read_csv(path_csv)
     timestamp=df.iloc[-1]["timestamp"]
     csi_data=df.iloc[-1]["csi_data"]
-    return CSI_Data(
+    return Time_And_CSI_Data(
         timestamp=timestamp,
-        csi=csi_data
+        csi_data=json.loads(csi_data)
     )
 @csi_router.get("/csi_data/{axis}/magnitude/latest")
 async def _():
@@ -52,7 +53,7 @@ async def _():
 async def _():
     pass
 
-@csi_router.get("/csi_data/{axis}/raw/all",response_model=List[CSI_Data])
+@csi_router.get("/csi_data/{axis}/raw/all",response_model=List[Time_And_CSI_Data])
 async def get_all_raw_csi_data(axis:str):
     axis=axis.lower()
     path_csv=""
@@ -64,9 +65,9 @@ async def get_all_raw_csi_data(axis:str):
         raise HTTPException(status_code=400, detail="Axis must be either x or y")
     df=pd.read_csv(path_csv)
     df["csi_data"]=df["csi_data"].map(json.loads)
-    resp=[CSI_Data(
+    resp=[Time_And_CSI_Data(
         timestamp=timestamp,
-        csi=csi_data
+        csi_data=csi_data
     ) for timestamp,csi_data in zip(df["timestamp"],df["csi_data"])]
     return resp
 @csi_router.get("/csi_data/{axis}/magnitude/all")
