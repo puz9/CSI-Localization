@@ -20,7 +20,7 @@ async def upload_latest_map_data_to_storage(map_data:Map_Data):
 
     df=pd.read_csv(path_map_data)
     new_data=pd.DataFrame({
-        "timestamp":[datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")],
+        "timestamp":[datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")],
         "map_data":[json.dumps(validated_map_data.map_data)]
     },index=[0])
     df=pd.concat([df,new_data],ignore_index=True)

@@ -21,7 +21,7 @@ def upload_raw_CSI_data_to_server(axis: str,request_body: CSI_Data):
         raise HTTPException(status_code=400, detail="Axis must be either x or y")
     df=pd.read_csv(path_csv)
     new_data=pd.DataFrame({
-        "timestamp":[datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")],
+        "timestamp":[datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")],
         "csi_data":request_body.csi
     },index=[0])
     df=pd.concat([df,new_data],ignore_index=True)
