@@ -52,16 +52,6 @@ def save_map_data(data: dict):
 
 @app.get("/get_map_data")
 def return_map_data():
-    # import json
-    # import requests
-    
-    # json_data = requests.get('https://4fbc-2405-9800-b671-2af7-54ba-c2b0-542f-1287.ngrok-free.app/get_data').text
-    
-    # data_dict = json.loads(json_data)
-
-    # latest_data=data_dict["data"][-1]
-    # map_data_return=latest_data["Data"]
-    # return {"map": map_data_return}
     df=pd.read_csv("map_datas.csv")
     map_data=df.iloc[-1]["map"]
     return {"map": json.loads(map_data)}
