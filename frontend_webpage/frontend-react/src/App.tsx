@@ -35,7 +35,7 @@ function App() {
         return <Row gutter={8}>
           {row.map(function(v){
             if (v === 0) return <Col span={6} offset={0}><EmptyIcon size={64}/></Col>
-            else return <Col span={6} offset={0}><AimIcon size={64}/></Col>
+            else return <Col span={6} offset={0}><HumanIcon size={64}/></Col>
           })}
         </Row>
       })}
@@ -43,7 +43,7 @@ function App() {
   );
 }
 
-const AimIcon = ({ size }: { size: number }) => {
+const HumanIcon = ({ size }: { size: number }) => {
   return <UserOutlined style={{ fontSize: size , borderRadius:10,backgroundColor:"#FFFFFF"}} />;
 };
 const EmptyIcon = ({ size}: { size: number }) => {

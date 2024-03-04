@@ -50,7 +50,7 @@ def save_map_data(data: dict):
 
 
 
-@app.get("/get_map_data")
+@app.get("/map_data")
 def return_map_data():
     df=pd.read_csv("map_datas.csv")
     map_data=df.iloc[-1]["map"]
