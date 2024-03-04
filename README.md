@@ -8,7 +8,7 @@ run script script `backend_server_and_database/main_FastAPI_server.py`
 
 ## Backend
 ```
-pip install -r requirements.txt
+pip install -r requirements.txt or pip3 install -r requirements.txt
 python3 backend_server_and_database/main_FastAPI_server.py
 ```
 
