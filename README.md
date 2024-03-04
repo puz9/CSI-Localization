@@ -9,6 +9,7 @@ run script script `backend_server_and_database/main_FastAPI_server.py`
 ```
 pip install -r requirements.txt or pip3 install -r requirements.txt
 python backend_server_and_database/main_FastAPI_server.py
+
 ```
 
 ## Frontend
@@ -17,6 +18,7 @@ python backend_server_and_database/main_FastAPI_server.py
 cd frontend_webpage/frontend-react
 npm i
 npm run dev
+
 ```
 
 ## ML (Running)
