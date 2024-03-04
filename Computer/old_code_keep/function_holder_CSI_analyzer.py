@@ -1,14 +1,14 @@
 from collections import Counter, deque
 import math
 import joblib
-import os
+from typing import List
 
 model=joblib.load('knn_model.pkl')
 
-def normalize_raw_csi(raw_csi):
+def normalize_raw_csi(raw_csi : List[int]) -> List[float]:
     return [v/128 for v in raw_csi]
 
-def raw_csi_to_magnitudes(raw_csi):
+def raw_csi_to_magnitudes(raw_csi:List[int]) -> List[int]:
     magnitudes = []
     if len(raw_csi)!=128:
         raise ValueError("CSI data must be 128 in length")
@@ -28,7 +28,7 @@ def raw_csi_to_magnitudes(raw_csi):
 def normalize_magnitudes(magnitudes):
     return [v/(128*math.sqrt(2)) for v in magnitudes]
 
-def raw_csi_to_phases(raw_csi):
+def raw_csi_to_phases(raw_csi:List[int]):
     phases = []
     if len(raw_csi)!=128:
         raise ValueError("CSI data must be 128 in length")
@@ -45,7 +45,7 @@ def raw_csi_to_phases(raw_csi):
         phases.append(phase)
     return phases
 
-def raw_csi_to_features(csi_data_x,csi_data_y):
+def raw_csi_to_features(csi_data_x:list[int],csi_data_y:list[int]) -> list[int]:
     # rx=normalize_raw_csi(csi_data_x)
     # ry=normalize_raw_csi(csi_data_y)
     rx=raw_csi_to_magnitudes(csi_data_x)
@@ -61,7 +61,7 @@ def raw_csi_to_features(csi_data_x,csi_data_y):
     features=rx+ry
     return features
 
-def get_one_human_cell_index(csi_data_x,csi_data_y):
+def get_one_human_cell_index(csi_data_x:list[int],csi_data_y:list[int]) -> int:
     global model
     features=raw_csi_to_features(csi_data_x,csi_data_y)
     if len(features)==0:
@@ -69,7 +69,7 @@ def get_one_human_cell_index(csi_data_x,csi_data_y):
     return model.predict([features])[0]
     
 answers=deque(maxlen=10)
-def get_map_data(csi_data_x,csi_data_y):
+def get_map_data(csi_data_x : list[int],csi_data_y : list[int]) -> List[List[int]]:
     global answers
     next_cell_index=get_one_human_cell_index(csi_data_x,csi_data_y)
     answers.append(next_cell_index)
