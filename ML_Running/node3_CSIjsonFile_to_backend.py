@@ -18,6 +18,10 @@ while True:
             }
         )
         print(resp.text)
+    except requests.exceptions.ConnectionError as e:
+        print(e)
+    except json.JSONDecodeError as e:
+        print(e)
     except ConnectionError as e:
         print(e)
     time.sleep(1)

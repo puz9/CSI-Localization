@@ -4,8 +4,8 @@
 
 #include "lcd_fn.h"
 
-const char* ssid = "TEXAS_2.4G";
-const char* password = "TEXAS123";
+const char* ssid = "OPPO_KUY";
+const char* password = "oppopass";
 
 uint8_t map_data[4][4]={
   {0,0,0,0},
@@ -31,7 +31,7 @@ void connectToWiFi(){
 
 void updateMapDataFromServer(){
   HTTPClient http;
-  String url=baseUrl+String("/map_data");
+  String url=baseUrl+String("/map_data/latest");
   http.begin(url);
   int httpResponseCode = http.GET();
   if (httpResponseCode > 0) {
@@ -45,7 +45,7 @@ void updateMapDataFromServer(){
         Serial.println(error.c_str());
       }else{
         Serial.println("Map Array:");
-        JsonArray mapArray = jsonDoc["map"].as<JsonArray>();
+        JsonArray mapArray = jsonDoc["map_data"].as<JsonArray>();
         for(int i=0;i<mapArray.size();++i){
           JsonArray row=mapArray[i];
           for(int j=0;j<row.size();++j){

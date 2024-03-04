@@ -55,7 +55,7 @@ uint8_t map_data[4][4];
 
 void updateMapDataFromServer(){
   HTTPClient http;
-  String url="http://"+String(serverAddress)+":"+String(serverPort)+"/map_data";
+  String url="http://"+String(serverAddress)+":"+String(serverPort)+"/map_data/latest";
   http.begin(url);
   int httpResponseCode = http.GET();
   if (httpResponseCode > 0) {
@@ -69,7 +69,7 @@ void updateMapDataFromServer(){
         Serial.println(error.c_str());
       }else{
         Serial.println("Map Array:");
-        JsonArray mapArray = jsonDoc["map"].as<JsonArray>();
+        JsonArray mapArray = jsonDoc["map_data"].as<JsonArray>();
         for(int i=0;i<mapArray.size();++i){
           JsonArray row=mapArray[i];
           for(int j=0;j<row.size();++j){
@@ -122,7 +122,7 @@ float compare_2d_arrays(uint8_t arr1[4][4], uint8_t arr2[4][4]) {
 
 void sendMapDataToLine(bool only_if_different=true){
   float diff_percent=compare_2d_arrays(map_data0,map_data);
-  if(only_if_different==true && diff_percent<25){
+  if(only_if_different==true && diff_percent<5){
     Serial.print("Not sent to LINE, ");
     Serial.print(diff_percent);
     Serial.println("%");
