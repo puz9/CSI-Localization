@@ -35,7 +35,6 @@ def upload_raw_CSI_data_to_server(axis: str,request_body: CSI_Data):
     return {"message": "CSI data uploaded"}
 @csi_router.post("/csi_data_both_axis/raw/upload")
 def upload_raw_CSI_data_to_server_both_axis(request_body : CSI_DataXY):
-    print("fuck")
     df_x=pd.read_csv(path_csi_x_data)
     new_data=pd.DataFrame({
         "timestamp":[datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")],
