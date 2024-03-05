@@ -8,7 +8,8 @@ import os
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 
-model=joblib.load('knn_model_v1.pkl')
+
+model=joblib.load('knn_model.pkl')
 
 def normalize_raw_csi(raw_csi : list[int]) -> list[float]:
     return [v/128 for v in raw_csi]
