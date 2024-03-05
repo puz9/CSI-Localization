@@ -25,14 +25,14 @@ npm run dev
 
 ```
 #Terminal 1
-python ML_Running/node1_SerialCSI_to_jsonFileX.py
+python ML_Running/v1/node1_SerialCSI_to_jsonFileX.py
 
 #Terminal 2
-python ML_Running/node2_SerialCSI_to_jsonFileY.py
+python ML_Running/v1/node2_SerialCSI_to_jsonFileY.py
 
 #Terminal 3
-python ML_Running/node3_CSIjsonFile_to_backend.py
+python ML_Running/v1/node3_CSIjsonFile_to_backend.py
 
 #Terminal 4
-python ML_Running/node4_CSIjsonFile_to_map_to_backend.py
+python ML_Running/v1/node4_CSIjsonFile_to_map_to_backend.py
 ```
