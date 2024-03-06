@@ -41,3 +41,5 @@ There are the scripts in `ML_setup&train\CSI Project`
 paste these scripts in active_ap folder of esp32-csi-tool
 
 This script will read serial. So you can verify esp32 that sends csi data properly and consistently
+
+Press `B` to start data collection and Press `C` to stop data collection and save to csv.
