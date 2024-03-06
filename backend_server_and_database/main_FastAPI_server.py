@@ -15,6 +15,7 @@ from csi_endpoints import csi_router
 app = FastAPI()
 
 origins = [
+    "*",
     "http://localhost:5173",
     # Add more allowed origins if needed
 ]

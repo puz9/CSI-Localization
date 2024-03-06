@@ -38,7 +38,7 @@ const updateValueArray = async () => {
 
   // Run updateValueArray function every 1 seconds
   useEffect(() => {
-    const interval = setInterval(updateValueArray, 1000);
+    const interval = setInterval(updateValueArray, 500);
     return () => clearInterval(interval);
   }, []);
 

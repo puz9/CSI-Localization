@@ -2,12 +2,10 @@
 
 My IP address is in here. Feel free to hack me.
 
-run script script `backend_server_and_database/main_FastAPI_server.py`
-
 ## Backend
 
 ```
-pip install -r requirements.txt or pip3 install -r requirements.txt
+pip install -r requirements.txt
 python backend_server_and_database/main_FastAPI_server.py
 
 ```
@@ -25,14 +23,11 @@ npm run dev
 
 ```
 #Terminal 1
-python ML_Running/v1/node1_SerialCSI_to_jsonFileX.py
+python ML_Running/v2/node1_SerialCSI_to_jsonFileX.py
 
 #Terminal 2
-python ML_Running/v1/node2_SerialCSI_to_jsonFileY.py
+python ML_Running/v2/node2_SerialCSI_to_jsonFileY.py
 
 #Terminal 3
-python ML_Running/v1/node3_CSIjsonFile_to_backend.py
-
-#Terminal 4
-python ML_Running/v1/node4_CSIjsonFile_to_map_to_backend.py
+python ML_Running/v2/node3_CSIjsonFile_to_map_to_backend.py
 ```

@@ -81,7 +81,8 @@ void map_data_to_lcd(){
   clear_lcd();
   for(int x=0;x<4;++x){
     for(int y=0;y<4;++y){
-      draw_human(x,y,human_frame);
+      if(map_data[y][x]==1)
+        draw_human(x,y,human_frame);
     }
   }
   display_lcd();
